@@ -14,7 +14,7 @@ var scene,
   container;
 
 //SCENE
-var floor, brid1, bird2;
+var floor, figure1, figure2, figure3;
 
 //SCREEN VARIABLES
 
@@ -114,9 +114,9 @@ function createLights() {
   scene.add(shadowLight);
 }
 
-//BIRD
+//FIGURE
 
-Bird = function () {
+Figure = function () {
   this.rSegments = 4;
   this.hSegments = 3;
   this.cylRay = 120;
@@ -276,7 +276,7 @@ Bird = function () {
   });
 };
 
-Bird.prototype.look = function (hAngle, vAngle) {
+Figure.prototype.look = function (hAngle, vAngle) {
   this.hAngle = hAngle;
   this.vAngle = vAngle;
 
@@ -323,7 +323,7 @@ Bird.prototype.look = function (hAngle, vAngle) {
   this.face.rotation.y = this.hAngle;
   this.bodyBird.geometry.verticesNeedUpdate = true;
 };
-Bird.prototype.lookAway = function (fastMove) {
+Figure.prototype.lookAway = function (fastMove) {
   var speed = fastMove ? 0.4 : 2;
   var ease = fastMove ? Strong.easeOut : Strong.easeInOut;
   var delay = fastMove ? 0.2 : 0;
@@ -360,7 +360,7 @@ Bird.prototype.lookAway = function (fastMove) {
   });
 };
 
-Bird.prototype.stare = function () {
+Figure.prototype.stare = function () {
   _this = this;
   var col = this.normalSkin;
   if (this.side == "right") {
@@ -390,24 +390,27 @@ function createFloor() {
   scene.add(floor);
 }
 
-function createBirds() {
-  bird1 = new Bird();
-  bird1.threegroup.position.x = 0;
-  scene.add(bird1.threegroup);
+function createFigures() {
+  figure1 = new Figure();
+  figure1.threegroup.position.x = 0;
+  figure1.threegroup.position.z = 0;
+  scene.add(figure1.threegroup);
 
-  bird2 = new Bird();
-  bird2.threegroup.position.x = -250;
-  bird2.side = "right";
-  bird2.threegroup.scale.set(0.8, 0.8, 0.8);
-  bird2.threegroup.position.y = -8;
-  scene.add(bird2.threegroup);
+  figure2 = new Figure();
+  figure2.threegroup.position.x = -250;
+  figure2.threegroup.position.z = -100;
+  figure2.side = "right";
+  figure2.threegroup.scale.set(0.8, 0.8, 0.8);
+  figure2.threegroup.position.y = -8;
+  scene.add(figure2.threegroup);
 
-  bird3 = new Bird();
-  bird3.threegroup.position.x = 250;
-  bird3.side = "left";
-  bird3.threegroup.scale.set(0.8, 0.8, 0.8);
-  bird3.threegroup.position.y = -8;
-  scene.add(bird3.threegroup);
+  figure3 = new Figure();
+  figure3.threegroup.position.x = 250;
+  figure3.threegroup.position.z = 120;
+  figure3.side = "left";
+  figure3.threegroup.scale.set(0.8, 0.8, 0.8);
+  figure3.threegroup.position.y = -8;
+  scene.add(figure3.threegroup);
 }
 
 function loop() {
@@ -415,42 +418,42 @@ function loop() {
   var tempVA = (mousePos.y - windowHalfY) / 200;
   var userHAngle = Math.min(Math.max(tempHA, -Math.PI / 3), Math.PI / 3);
   var userVAngle = Math.min(Math.max(tempVA, -Math.PI / 3), Math.PI / 3);
-  bird1.look(userHAngle, userVAngle);
+  figure1.look(userHAngle, userVAngle);
 
-  if (bird1.hAngle < -Math.PI / 5 && !bird2.intervalRunning) {
-    bird2.lookAway(true);
-    bird2.intervalRunning = true;
-    bird2.behaviourInterval = setInterval(function () {
-      bird2.lookAway(false);
+  if (figure1.hAngle < -Math.PI / 5 && !figure2.intervalRunning) {
+    figure2.lookAway(true);
+    figure2.intervalRunning = true;
+    figure2.behaviourInterval = setInterval(function () {
+      figure2.lookAway(false);
     }, 1500);
-  } else if (bird1.hAngle > 0 && bird2.intervalRunning) {
-    bird2.stare();
-    clearInterval(bird2.behaviourInterval);
-    bird2.intervalRunning = false;
-  } else if (bird1.hAngle > Math.PI / 5 && !bird3.intervalRunning) {
-    bird3.lookAway(true);
-    bird3.intervalRunning = true;
-    bird3.behaviourInterval = setInterval(function () {
-      bird3.lookAway(false);
+  } else if (figure1.hAngle > 0 && figure2.intervalRunning) {
+    figure2.stare();
+    clearInterval(figure2.behaviourInterval);
+    figure2.intervalRunning = false;
+  } else if (figure1.hAngle > Math.PI / 5 && !figure3.intervalRunning) {
+    figure3.lookAway(true);
+    figure3.intervalRunning = true;
+    figure3.behaviourInterval = setInterval(function () {
+      figure3.lookAway(false);
     }, 1500);
-  } else if (bird1.hAngle < 0 && bird3.intervalRunning) {
-    bird3.stare();
-    clearInterval(bird3.behaviourInterval);
-    bird3.intervalRunning = false;
+  } else if (figure1.hAngle < 0 && figure3.intervalRunning) {
+    figure3.stare();
+    clearInterval(figure3.behaviourInterval);
+    figure3.intervalRunning = false;
   }
 
-  bird2.look(bird2.shyAngles.h, bird2.shyAngles.v);
-  bird2.bodyBird.material.color.setRGB(
-    bird2.color.r,
-    bird2.color.g,
-    bird2.color.b,
+  figure2.look(figure2.shyAngles.h, figure2.shyAngles.v);
+  figure2.bodyBird.material.color.setRGB(
+    figure2.color.r,
+    figure2.color.g,
+    figure2.color.b,
   );
 
-  bird3.look(bird3.shyAngles.h, bird3.shyAngles.v);
-  bird3.bodyBird.material.color.setRGB(
-    bird3.color.r,
-    bird3.color.g,
-    bird3.color.b,
+  figure3.look(figure3.shyAngles.h, figure3.shyAngles.v);
+  figure3.bodyBird.material.color.setRGB(
+    figure3.color.r,
+    figure3.color.g,
+    figure3.color.b,
   );
 
   render();
@@ -465,5 +468,5 @@ function render() {
 init();
 createLights();
 createFloor();
-createBirds();
+createFigures();
 loop();
