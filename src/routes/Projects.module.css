@@ -1,0 +1,21 @@
+.projectGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.projectCard {
+  flex: 1 1 240px;
+  border: 1px solid #e0dacd;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.projectCard h2 {
+  margin-top: 0;
+  font-size: 1.1em;
+}
+
+.projectCard a {
+  color: #b75505;
+}

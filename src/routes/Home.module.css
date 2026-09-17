@@ -1,0 +1,29 @@
+.world {
+  background: #e0dacd;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.heroText {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin-bottom: 40px;
+  text-align: center;
+  color: #b75505;
+  pointer-events: none;
+}
+
+.heroText h1 {
+  margin: 0;
+  font-size: 1.6em;
+}
+
+.heroText p {
+  margin: 4px 0 0;
+  color: #b59b63;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}

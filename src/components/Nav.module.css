@@ -1,0 +1,23 @@
+.nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  display: flex;
+  gap: 24px;
+  padding: 20px 30px;
+  box-sizing: border-box;
+}
+
+.nav a {
+  color: #b75505;
+  text-decoration: none;
+  font-size: 0.9em;
+  text-transform: uppercase;
+}
+
+.nav a.active {
+  color: #7a3800;
+  font-weight: bold;
+}
