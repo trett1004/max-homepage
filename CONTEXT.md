@@ -5,13 +5,13 @@ Max's personal/professional homepage: a portfolio site for clients, collaborator
 ## Language
 
 **Homepage**:
-The site's root page. Doubles as the Landing Hero — visitors land directly on the interactive bird scene, not a separate marketing page above it.
+The site's root page. Doubles as the Landing Hero — visitors land directly on the interactive fox scene, not a separate marketing page above it.
 _Avoid_: Landing page (use only when specifically emphasizing the hero-scene aspect of the homepage)
 
 **Landing Hero**:
 The interactive Three.js scene of Figures that reacts to mouse/touch position, serving as the homepage's hero. A permanent, evolving piece of the site rather than a throwaway demo.
-_Avoid_: Bird demo, intro animation
+_Avoid_: Bird demo, fox demo, intro animation
 
 **Figure**:
-One of the animated 3D characters in the Landing Hero (e.g. `bird1`, `bird2`, `bird3`). The broad term for any such character — not limited to birds, even though the current design uses ducks.
+One of the animated 3D characters in the Landing Hero (e.g. `fox1`, `fox2`, `fox3`). The broad term for any such character — not limited to foxes, even though the current design uses them.
 _Avoid_: Model, character (when referring to these specifically, say Figure)
